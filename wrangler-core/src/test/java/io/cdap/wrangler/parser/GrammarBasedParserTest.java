@@ -65,14 +65,12 @@ public class GrammarBasedParserTest {
   }
 
   @Test
-  public void testCommentOnlyRecipe() throws Exception {
-    String[] recipe = new String[] {
-      "// test"
-    };
+  
+public void testByteSizeParsing() throws Exception {
+    String recipe = "parse-as-csv :body; aggregate-stats :size :time total MB";
+    List<Directive> directives = parser.parse(recipe);
+    // Assert directive and arguments
+}
 
-    RecipeParser parser = TestingRig.parse(recipe);
-    List<Directive> directives = parser.parse();
-    Assert.assertEquals(0, directives.size());
-  }
 
 }

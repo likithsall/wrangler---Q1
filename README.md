@@ -216,3 +216,19 @@ Cask is a trademark of Cask Data, Inc. All rights reserved.
 
 Apache, Apache HBase, and HBase are trademarks of The Apache Software Foundation. Used with
 permission. No endorsement by The Apache Software Foundation is implied by the use of these marks.
+
+## New Unit Parsers
+
+### Byte Size Formats
+- Supported units: B, KB, MB, GB, TB, KiB, MiB, GiB, TiB
+- Example: `parse-as :bytes byte-size 10.5MB`
+
+### Time Duration Formats
+- Supported units: ns, ms, s, m, h, d
+- Example: `parse-as :duration time-duration 150ms`
+
+### Aggregate Stats Directive
+aggregate-stats <size-column> <time-column> <size-output> <time-output> [unit] [time-unit]
+
+Example:
+aggregate-stats :data_size :response_time total_size_mb total_time_sec MB seconds

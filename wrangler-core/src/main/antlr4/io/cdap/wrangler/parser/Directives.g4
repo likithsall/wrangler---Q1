@@ -140,7 +140,7 @@ numberRange
  ;
 
 value
- : String | Number | Column | Bool
+ : String | Number | Column | Bool | ByteSize | TimeDuration
  ;
 
 ecommand
@@ -274,6 +274,23 @@ String
  | '"'  ( EscapeSequence | ~('"') )* '"'
  ;
 
+// New byte size and time duration tokens
+fragment ByteUnit
+ : ('B'|'KB'|'MB'|'GB'|'TB'|'KIB'|'MIB'|'GIB'|'TIB')
+ ;
+
+fragment TimeUnit
+ : ('NS'|'MS'|'S'|'M'|'H'|'D')
+ ;
+
+ByteSize
+ : Number [ \t\r\n\u000C]* ByteUnit
+ ;
+
+TimeDuration
+ : Number [ \t\r\n\u000C]* TimeUnit
+ ;
+
 EscapeSequence
    :   '\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')
    |   UnicodeEscape
@@ -311,16 +328,3 @@ fragment Int
 fragment Digit
  : [0-9]
  ;
-
-+// Lexer additions
-+fragment BYTE_UNIT: ('B'|'KB'|'MB'|'GB'|'TB'|'KIB'|'MIB'|'GIB'|'TIB');
-+fragment TIME_UNIT: ('NS'|'MS'|'S'|'M'|'H'|'D');
-+
-+BYTE_SIZE: [0-9]+('.'[0-9]+)? WS* BYTE_UNIT;
-+TIME_DURATION: [0-9]+('.'[0-9]+)? WS* TIME_UNIT;
-
-// Parser rule updates
-value:
--    STRING | NUMBER | BOOLEAN | NULL;
-+    STRING | NUMBER | BOOLEAN | NULL |
-+    BYTE_SIZE | TIME_DURATION;

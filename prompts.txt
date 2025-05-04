@@ -1,0 +1,19 @@
+I have used two AI Models for guidance and correction 
+
+In Perplexity AI
+
+How do we implement ANTLR4 lexer rules for unit parsing?
+
+Testing strategies for aggregate directives in CDAP?
+
+
+In Claude AI
+
+How does the  CDAP Wrangler library function?
+
+(pasted the code which I wrote initially) 
+
+In this code, where do you think the error is and how to rectify it?
+
+Explain me the working of the current code?
+

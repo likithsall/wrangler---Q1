@@ -311,3 +311,16 @@ fragment Int
 fragment Digit
  : [0-9]
  ;
+
++// Lexer additions
++fragment BYTE_UNIT: ('B'|'KB'|'MB'|'GB'|'TB'|'KIB'|'MIB'|'GIB'|'TIB');
++fragment TIME_UNIT: ('NS'|'MS'|'S'|'M'|'H'|'D');
++
++BYTE_SIZE: [0-9]+('.'[0-9]+)? WS* BYTE_UNIT;
++TIME_DURATION: [0-9]+('.'[0-9]+)? WS* TIME_UNIT;
+
+// Parser rule updates
+value:
+-    STRING | NUMBER | BOOLEAN | NULL;
++    STRING | NUMBER | BOOLEAN | NULL |
++    BYTE_SIZE | TIME_DURATION;
